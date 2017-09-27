@@ -1,9 +1,21 @@
 <?php
+include 'lib/data-functions.php';
 if($_POST)
 {
     $name = $_POST['name'];
     $description = $_POST['description'];
     $status = $_POST['status'];
+    $age = $_POST['age'];
+
+    $kitten = [
+        'name' => $name,
+        'description' => $description,
+        'status' => $status,
+        'age' => $age
+    ];
+
+    insert_data($kitten);
+    var_dump($_POST);
 }
 
 ?>
@@ -25,23 +37,23 @@ if($_POST)
     <form action="" method="post">
         <div class="form-group">
             <label for="exampleInputEmail1">Name</label>
-            <input type="text" name="name" class="form-control">
+            <input type="text" name="name" class="form-control" value="<?php $kitten['name']?>">
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Description</label>
-            <textarea name="description" cols="30" rows="10" class="form-control"></textarea> 
+            <textarea name="description" cols="30" rows="10" class="form-control" value="<?php $kitten['description']?>"></textarea> 
         </div>
         <div class="form-check">
             <label class="form-check-label">
             <h4>Status</h4>
-            <input type="checkbox" name="status" class="form-check-input">
+            <input type="checkbox" name="status" class="form-check-input" value="<?php $kitten['status']?>">
             Adopted
             </label>
         </div>
         <div class="form-check">
             <label class="form-check-label">
             <h4>Age</h4> 
-            <select name="age">
+            <select name="age" value="<?php $kitten['age']?>">
                 <option value="0-6">0-6 months</option>
                 <option value="6-12" selected>6-12 months</option>
                 <option value="more">more than 1 year</option>
@@ -52,6 +64,5 @@ if($_POST)
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
-<?php var_dump($_POST); ?>
 </body>
 </html>
